@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <title>Alpine GAME</title>
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.1/dist/alpine.min.js" defer></script>
     <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
     <style>
         .container {
@@ -43,7 +42,7 @@
         盤面をクリックすると生死を切り替えることができます。(停止中のみ)<br>
         スタートボタンをクリックするとスタートします。
     </div>
-    <div class="container" x-data="data()" x-init="init()">
+    <div class="container" x-data="window.data()" x-init="init()">
         <div class="board">
             <template x-for="(row, index) in board">
                 <div class="row">
@@ -61,8 +60,10 @@
             <div>世代数: <span x-text="generation"></span> </div>
         </div>
     </div>
-    <script>"use strict";
-        const data = () => ({
+    <script type=module>
+        import Alpine from "./Alpine_es/index.js";
+
+        window.data = () => ({
             w: 20, 
             h: 20,
             generation: 0,
@@ -144,6 +145,7 @@
 
             return cnt;
         }
+        Alpine.start()
     </script>
 </body>
 </html>
